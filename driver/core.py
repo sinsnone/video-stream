@@ -8,11 +8,12 @@ bot = Client(
     API_ID,
     API_HASH,
     bot_token=BOT_TOKEN,
-    plugins={"root": "program"},
+    plugins=dict(root="program")
 )
 
 user = Client(
-    SESSION_NAME,
+    'SESSION_NAME',
+    session_string=SESSION_NAME,
     api_id=API_ID,
     api_hash=API_HASH,
 )
