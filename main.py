@@ -4,9 +4,18 @@ import logging
 from program import LOGS
 from pytgcalls import idle
 from driver.core import calls, bot, user
-
+from config import API_HASH, API_ID, BOT_TOKEN
 
 logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+bot = Client(
+    ":veez:",
+    API_ID,
+    API_HASH,
+    bot_token=BOT_TOKEN,
+    plugins=dict(root="program")
+)
 
 async def start_bot():
     await bot.start()
