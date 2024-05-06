@@ -10,7 +10,7 @@ heroku3
 motor
 pillow
 psutil
-py-tgcalls==0.9.7
+py-tgcalls
 pykeyboard
 pyrogram==2.0.106
 python-dotenv
@@ -24,3 +24,6 @@ yt-dlp
 youtube-search
 youtube-search-python
 telegraph
+rich
+wget
+lyricsgenius
