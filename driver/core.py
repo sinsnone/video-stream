@@ -20,7 +20,9 @@ user = Client(
 
 calls = PyTgCalls(user)
 
-me_user = user.get_me()
 
 with Client(":veez:", API_ID, API_HASH, bot_token=BOT_TOKEN) as app:
     me_bot = app.get_me()
+    
+with user as app:
+    me_user = app.get_me()
