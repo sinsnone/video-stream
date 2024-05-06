@@ -36,7 +36,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 
-@Client.on_message(command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["sysinfo", f"sysinfo@{BOT_USERNAME}"]))
 @sudo_users_only
 async def fetch_system_information(client, message):
     splatform = platform.system()
@@ -76,7 +76,7 @@ async def fetch_system_information(client, message):
     await message.reply(somsg)
 
 
-@Client.on_message(command(["logs", f"logs@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["logs", f"logs@{BOT_USERNAME}"]))
 @sudo_users_only
 async def get_bot_logs(c: Client, m: Message):
     bot_log_path = f'streambot-logs-{me_bot.id}.txt'

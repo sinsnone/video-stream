@@ -25,7 +25,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
 
-@Client.on_message(command(["search", f"search@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["search", f"search@{BOT_USERNAME}"]))
 @check_blacklist()
 async def youtube_search(_, message: Message):
     if len(message.command) < 2:

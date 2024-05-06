@@ -34,7 +34,7 @@ from driver.filters import command
 from driver.utils import remove_if_exists
 
 
-@Client.on_message(command(["song", f"song@{bn}"]) & ~filters.edited)
+@Client.on_message(command(["song", f"song@{bn}"]))
 @check_blacklist()
 async def song_downloader(_, message):
     await message.delete()
@@ -99,7 +99,7 @@ async def song_downloader(_, message):
 
 
 @Client.on_message(
-    command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
+    command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"])
 )
 @check_blacklist()
 async def video_downloader(_, message):

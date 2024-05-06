@@ -80,7 +80,7 @@ async def leave_chat(c :Client, m: Message):
         return await c.send_message(chat_id, "❌ userbot already leave chat")
 
 
-@Client.on_message(command(["leaveall", f"leaveall@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["leaveall", f"leaveall@{BOT_USERNAME}"]))
 @bot_creator
 async def leave_all(c: Client, message: Message):
     if message.from_user.id not in SUDO_USERS:

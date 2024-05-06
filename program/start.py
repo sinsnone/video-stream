@@ -77,7 +77,7 @@ async def _human_time_duration(seconds):
 
 
 @Client.on_message(
-    command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited
+    command(["start", f"start@{BOT_USERNAME}"]) & filters.private
 )
 @check_blacklist()
 async def start_(c: Client, message: Message):
@@ -105,7 +105,7 @@ async def start_(c: Client, message: Message):
 
 
 @Client.on_message(
-    command(["alive", f"alive@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+    command(["alive", f"alive@{BOT_USERNAME}"]) & filters.group
 )
 @check_blacklist()
 async def alive(c: Client, message: Message):
@@ -132,7 +132,7 @@ async def alive(c: Client, message: Message):
     )
 
 
-@Client.on_message(command(["ping", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["ping", f"ping@{BOT_USERNAME}"]))
 @check_blacklist()
 async def ping_pong(c: Client, message: Message):
     start = time()
@@ -141,7 +141,7 @@ async def ping_pong(c: Client, message: Message):
     await m_reply.edit_text("🏓 PONG !\n" f"⏱ `{delta_ping * 1000:.3f} ms`")
 
 
-@Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]))
 @check_blacklist()
 async def get_uptime(c: Client, message: Message):
     current_time = datetime.utcnow()
