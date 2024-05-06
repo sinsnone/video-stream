@@ -1,8 +1,7 @@
 import asyncio
 import logging
-
+from pyrogram import Client, idle
 from program import LOGS
-from pytgcalls import idle
 from driver.core import calls, bot, user
 from config import API_HASH, API_ID, BOT_TOKEN
 
