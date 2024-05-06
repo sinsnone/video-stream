@@ -18,11 +18,7 @@ user = Client(
     api_hash=API_HASH,
 )
 
-calls = PyTgCalls(
-    user,
-    cache_duration=100,
-    overload_quiet_mode=True,
-)
+calls = PyTgCalls(user)
 
 
 with Client(":veez:", API_ID, API_HASH, bot_token=BOT_TOKEN) as app:
