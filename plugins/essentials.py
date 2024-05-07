@@ -24,7 +24,7 @@ from pyrogram.types import Message
 from pyrogram import Client, filters, __version__ as pyrover
 from pytgcalls import (__version__ as pytgver)
 
-from program import __version__ as ver
+from . import __version__ as ver
 from .start import __python_version__ as pyver
 
 from bot import me_bot

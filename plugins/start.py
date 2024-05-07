@@ -32,7 +32,7 @@ from config import (
     UPDATES_CHANNEL,
 )
 
-from program import __version__, LOGS
+from . import __version__, LOGS
 from pytgcalls import (__version__ as pytover)
 
 from driver.filters import command
