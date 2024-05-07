@@ -2,7 +2,7 @@ import asyncio
 import logging
 from pyrogram import Client, idle
 from program import LOGS
-from driver.core import calls, bot, user
+from driver.core import calls, user
 from config import API_HASH, API_ID, BOT_TOKEN
 
 logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
