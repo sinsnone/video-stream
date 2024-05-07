@@ -37,7 +37,7 @@ from driver.database.dbqueue import (
 )
 
 from pyrogram import Client, filters
-from program.utils.inline import stream_markup, close_mark
+from .utils.inline import stream_markup, close_mark
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardMarkup,

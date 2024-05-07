@@ -20,7 +20,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/licenses.html
 from bot import me_bot, me_user
 from driver.queues import QUEUE
 from driver.decorators import check_blacklist
-from program.utils.inline import menu_markup, stream_markup
+from .utils.inline import menu_markup, stream_markup
 
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup

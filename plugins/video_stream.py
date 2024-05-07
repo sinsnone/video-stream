@@ -24,7 +24,7 @@ from asyncio.exceptions import TimeoutError
 from config import BOT_USERNAME, IMG_1, IMG_2, IMG_5
 
 from program import LOGS
-from program.utils.inline import stream_markup
+from .utils.inline import stream_markup
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.filters import command, other_filters

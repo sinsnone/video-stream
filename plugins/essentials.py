@@ -25,7 +25,7 @@ from pyrogram import Client, filters, __version__ as pyrover
 from pytgcalls import (__version__ as pytgver)
 
 from program import __version__ as ver
-from program.start import __python_version__ as pyver
+from .start import __python_version__ as pyver
 
 from bot import me_bot
 from driver.filters import command

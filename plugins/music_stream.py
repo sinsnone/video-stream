@@ -30,7 +30,7 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio
 from pytgcalls.exceptions import NoAudioSourceFound, NoActiveGroupCall, GroupCallNotFound
 
 from program import LOGS
-from program.utils.inline import stream_markup
+from .utils.inline import stream_markup
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.filters import command, other_filters
