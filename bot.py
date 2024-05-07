@@ -1,6 +1,7 @@
 import logging
 from pyrogram import Client, idle
 from config import API_ID, API_HASH, BOT_TOKEN, SESSION_NAME
+from pytgcalls import PyTgCalls
 from pyromod import listen
 
 bot = Client(
@@ -27,6 +28,10 @@ async def start_bot():
     await bot.start()
     try:
         await user.start()
+    except Exception as e:
+        logger.exception(e)
+    try:
+        await calls.start()
     except Exception as e:
         logger.exception(e)
     print("تم تشغيل البوت بنجاح")
