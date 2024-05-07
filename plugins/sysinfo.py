@@ -26,7 +26,7 @@ import platform
 
 from config import BOT_USERNAME
 
-from program import LOGS
+from . import LOGS
 from bot import me_bot
 from driver.filters import command
 from driver.utils import remove_if_exists
