@@ -9,7 +9,6 @@ from config import API_HASH, API_ID, BOT_TOKEN
 from pyrogram import Client
 from pytgcalls import PyTgCalls
 from bot import *
-from pyromod import listen
 
 
 
