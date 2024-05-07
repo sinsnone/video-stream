@@ -21,7 +21,7 @@ import asyncio
 
 from config import BOT_USERNAME, SUDO_USERS
 
-from program import LOGS
+from . import LOGS
 from .utils.function import get_calls
 
 from driver.queues import QUEUE
