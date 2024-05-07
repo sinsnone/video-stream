@@ -23,4 +23,4 @@ speedtest-cli
 motor
 pyromod~=1.5
 googletrans
-pytz
+lyricsgenius
