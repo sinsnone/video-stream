@@ -27,7 +27,7 @@ import platform
 from config import BOT_USERNAME
 
 from program import LOGS
-from driver.core import me_bot
+from bot import me_bot
 from driver.filters import command
 from driver.utils import remove_if_exists
 from driver.decorators import sudo_users_only, humanbytes

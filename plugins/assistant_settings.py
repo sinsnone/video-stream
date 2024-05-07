@@ -25,7 +25,7 @@ from program import LOGS
 from program.utils.function import get_calls
 
 from driver.queues import QUEUE
-from driver.core import user, me_bot
+from bot import user, me_bot
 from driver.filters import command, other_filters
 from driver.database.dbchat import remove_served_chat
 from driver.database.dbqueue import remove_active_chat

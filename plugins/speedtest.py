@@ -25,7 +25,7 @@ from config import BOT_USERNAME as bname
 
 from driver.filters import command
 from driver.decorators import sudo_users_only
-from driver.core import bot as app
+from bot import bot as app
 from driver.utils import remove_if_exists
 
 from pyrogram import Client, filters

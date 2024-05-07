@@ -18,6 +18,8 @@ user = Client(
     session_string=SESSION_NAME
 )
 
+calls = PyTgCalls(user)
+
 # Configure the logger
 logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -31,3 +33,9 @@ async def start_bot():
     await idle()
     await bot.stop()
     print("تم ايقاف البوت بنجاح")
+
+with Client(":veez:", API_ID, API_HASH, bot_token=BOT_TOKEN) as app:
+    me_bot = app.get_me()
+    
+with user as app:
+    me_user = app.get_me()

@@ -36,7 +36,7 @@ from program import __version__, LOGS
 from pytgcalls import (__version__ as pytover)
 
 from driver.filters import command
-from driver.core import bot, me_bot, me_user
+from bot import bot, me_bot, me_user
 from driver.database.dbusers import add_served_user
 from driver.database.dbchat import add_served_chat, is_served_chat
 from driver.database.dblockchat import blacklisted_chats

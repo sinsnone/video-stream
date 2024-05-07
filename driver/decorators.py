@@ -4,7 +4,7 @@ from typing import Callable, Union, Optional
 from pyrogram import Client
 from pyrogram.types import Message, CallbackQuery
 from config import SUDO_USERS, OWNER_ID
-from driver.core import bot, me_bot
+from bot import bot, me_bot
 from driver.admins import get_administrators
 from driver.database.dblockchat import blacklisted_chats
 from driver.database.dbpunish import is_gbanned_user

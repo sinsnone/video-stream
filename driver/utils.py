@@ -1,7 +1,7 @@
 import os
 import asyncio
 
-from driver.core import bot, calls, user
+from bot import bot, calls, user
 from driver.database.dbqueue import remove_active_chat
 from driver.queues import (
     QUEUE,
