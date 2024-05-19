@@ -1,0 +1,38 @@
+{
+  "name": "V1",
+  "description": "بوت ميوزك",
+  "logo": "https://telegra.ph/file/f5d2269e9e98faccfd5bf.jpg",
+  "env": {
+    "TK": {
+      "description": "توكن البوت",
+      "value": ""
+    },
+    "ID": {
+      "description": "يوزر المطور",
+      "value": ""
+    },
+    "SESSION": {
+      "description": "جلسه المساعد",
+      "value": ""
+    }
+  },
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+    }
+  ],
+  "stack": "container",
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "Standard-2X"
+    }
+  }
+}
