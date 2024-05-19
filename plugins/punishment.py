@@ -35,7 +35,7 @@ from config import OWNER_ID, SUDO_USERS, BOT_USERNAME as bn
 @Client.on_message(command(["gban", f"gban@{bn}"]) & other_filters)
 @bot_creator
 async def global_banned(c: Client, message: Message):
-    BOT_NAME = me_bot.first_name
+    BOT_NAME = Bot.me.first_name
     if not message.reply_to_message:
         if len(message.command) < 2:
             await message.reply_text("**usage:**\n\n/gban [username | user_id]")
@@ -45,7 +45,7 @@ async def global_banned(c: Client, message: Message):
             user = user.replace("@", "")
         user = await c.get_users(user)
         from_user = message.from_user
-        BOT_ID = me_bot.id
+        BOT_ID = Bot.me.id
         if user.id == from_user.id:
             await message.reply_text("You can't gban yourself !")
         elif user.id == BOT_ID:
@@ -94,7 +94,7 @@ async def global_banned(c: Client, message: Message):
     from_user_mention = message.from_user.mention
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
-    BOT_ID = me_bot.id
+    BOT_ID = Bot.me.id
     if user_id == from_user_id:
         await message.reply_text("You can't gban yourself !")
     elif user_id == BOT_ID:
@@ -160,7 +160,7 @@ async def ungban_global(c: Client, message: Message):
             user = user.replace("@", "")
         user = await c.get_users(user)
         from_user = message.from_user
-        BOT_ID = me_bot.id
+        BOT_ID = Bot.me.id
         if user.id == from_user.id:
             await message.reply_text("You can't ungban yourself because you can't be gbanned !")
         elif user.id == BOT_ID:
@@ -195,7 +195,7 @@ async def ungban_global(c: Client, message: Message):
     from_user_id = message.from_user.id
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
-    BOT_ID = me_bot.id
+    BOT_ID = Bot.me.id
     if user_id == from_user_id:
         await message.reply_text("You can't ungban yourself because you can't be gbanned !")
     elif user_id == BOT_ID:

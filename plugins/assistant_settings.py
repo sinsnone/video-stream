@@ -25,7 +25,7 @@ from . import LOGS
 from .utils.function import get_calls
 
 from driver.queues import QUEUE
-from mody.yad import user, me_bot
+from mody.yad import user
 from driver.filters import command, other_filters
 from driver.database.dbchat import remove_served_chat
 from driver.database.dbqueue import remove_active_chat
@@ -161,7 +161,7 @@ async def stop_group_call(c: Client, m: Message):
 
 @Client.on_message(filters.left_chat_member)
 async def bot_kicked(c: Client, m: Message):
-    bot_id = me_bot.id
+    bot_id = Bot.me.id
     chat_id = m.chat.id
     left_member = m.left_chat_member
     if left_member.id == bot_id:

@@ -55,7 +55,7 @@ async def start_set(_, query: CallbackQuery):
                     InlineKeyboardButton("📨 Sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/BLAZE_SUPPORT"),
                     InlineKeyboardButton(" Uᴘᴅᴀᴛᴇs 📨", url=f"https://t.me/THE_BLAZE_NETWORK")
                 ],[
-                    InlineKeyboardButton("➕ Aᴅᴅ Mᴇ Tᴏ Uʀ Gʀᴏᴜᴘ ➕", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("➕ Aᴅᴅ Mᴇ Tᴏ Uʀ Gʀᴏᴜᴘ ➕", url=f"https://t.me/{Bot.me.username}?startgroup=true")
                 ],
             ]
         ),

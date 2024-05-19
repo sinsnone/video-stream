@@ -143,7 +143,7 @@ async def broadcast_message_pin(c: Client, message: Message):
 @Client.on_message(command(["stats", f"stats@{uname}"]))
 @sudo_users_only
 async def bot_statistic(c: Client, message: Message):
-    name = me_bot.first_name
+    name = Bot.me.first_name
     chat_id = message.chat.id
     msg = await c.send_message(
         chat_id, "❖ Collecting Stats..."

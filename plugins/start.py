@@ -85,7 +85,7 @@ async def start_(c: Client, message: Message):
     await add_served_user(user_id)
     await message.reply_text(
         f"""☞ ✰Hᴇʟʟᴏ...  ‌ {message.from_user.mention()} 👋🏻\n
-☞ ✰Iᴍ.. [{me_bot.first_name}](https://t.me/{me_bot.username}) .
+☞ ✰Iᴍ.. [{Bot.me.first_name}](https://t.me/{Bot.me.username}) .
 
 ☞ ✰Tʜɪs ɪs Vɪᴅᴇᴏ + Mᴜsɪᴄ🎶 RᴏBᴏᴛ .. 
 
@@ -96,7 +96,7 @@ async def start_(c: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [                                    
-                    InlineKeyboardButton("➕ Aᴅᴅ Mᴇ Tᴏ Uʀ Gʀᴏᴜᴘ ➕", url=f"https://t.me/{me_bot.username}?startgroup=true")
+                    InlineKeyboardButton("➕ Aᴅᴅ Mᴇ Tᴏ Uʀ Gʀᴏᴜᴘ ➕", url=f"https://t.me/{Bot.me.username}?startgroup=true")
                 ],
             ]
         ),
@@ -123,7 +123,7 @@ async def alive(c: Client, message: Message):
             ]
         ]
     )
-    text = f"**Hello {message.from_user.mention()}, I'm {me_bot.first_name}**\n\n🧑🏼‍💻 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_USERNAME})\n👾 Bot Version: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Version: `{pytover.__version__}`\n🆙 Uptime Status: `{uptime}`\n\n❤ **Thanks for Adding me here, for playing video & music on your Group's video chat**"
+    text = f"**Hello {message.from_user.mention()}, I'm {Bot.me.first_name}**\n\n🧑🏼‍💻 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_USERNAME})\n👾 Bot Version: `v{__version__}`\n🔥 Pyrogram Version: `{pyrover}`\n🐍 Python Version: `{__python_version__}`\n✨ PyTgCalls Version: `{pytover.__version__}`\n🆙 Uptime Status: `{uptime}`\n\n❤ **Thanks for Adding me here, for playing video & music on your Group's video chat**"
     await c.send_photo(
         chat_id,
         photo=f"{ALIVE_IMG}",
@@ -173,13 +173,13 @@ async def new_chat(c: Client, m: Message):
         await add_served_chat(chat_id)
     for member in m.new_chat_members:
         try:
-            if member.id == me_bot.id:
+            if member.id == Bot.me.id:
                 if chat_id in await blacklisted_chats():
                     await m.reply_text(
                         "❗️ This chat has blacklisted by sudo user and You're not allowed to use me in this chat."
                     )
                     return await bot.leave_chat(chat_id)
-            if member.id == me_bot.id:
+            if member.id == Bot.me.id:
                 return await m.reply(
                     "❤️ Thanks for adding me to the **Group** !\n\n"
                     "Appoint me as administrator in the **Group**, otherwise I will not be able to work properly, and don't forget to type `/userbotjoin` for invite the assistant.\n\n"

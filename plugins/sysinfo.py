@@ -79,7 +79,7 @@ async def fetch_system_information(client, message):
 @Client.on_message(command(["logs", f"logs@{BOT_USERNAME}"]))
 @sudo_users_only
 async def get_bot_logs(c: Client, m: Message):
-    bot_log_path = f'streambot-logs-{me_bot.id}.txt'
+    bot_log_path = f'streambot-logs-{Bot.me.id}.txt'
     if os.path.exists(bot_log_path):
         try:
             await m.reply_document(
