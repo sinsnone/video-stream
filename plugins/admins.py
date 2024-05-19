@@ -22,7 +22,7 @@ import traceback
 from cache.admins import admins
 from config import BOT_USERNAME, IMG_5
 
-from mody.yad calls, me_user
+from mody.yad calls, user
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.queues import QUEUE, clear_queue
@@ -212,7 +212,7 @@ async def unmute(client, m: Message):
 async def change_volume(c: Client, m: Message):
     if len(m.command) < 2:
         return await m.reply_text("usage: `/volume` (`0-200`)")
-    a = await c.get_chat_member(m.chat.id, me_user.id)
+    a = await c.get_chat_member(m.chat.id, user.me.id)
     if not a.can_manage_voice_chats:
         return await m.reply_text(
             "The userbot must be admin in this chat to be able change the volume stream!"

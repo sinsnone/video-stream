@@ -36,7 +36,7 @@ from . import __version__, LOGS
 from pytgcalls import (__version__ as pytover)
 
 from driver.filters import command
-from mody.yad bot, me_bot, me_user
+from mody.yad bot, user
 from driver.database.dbusers import add_served_user
 from driver.database.dbchat import add_served_chat, is_served_chat
 from driver.database.dblockchat import blacklisted_chats
@@ -190,7 +190,7 @@ async def new_chat(c: Client, m: Message):
                                 InlineKeyboardButton("📣 Sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{UPDATES_CHANNEL}"),
                                 InlineKeyboardButton("💭 Uᴘᴅᴀᴛᴇs", url=f"https://t.me/{GROUP_SUPPORT}")
                             ],[
-                                InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{me_user.username}")
+                                InlineKeyboardButton("👤 Assistant", url=f"https://t.me/{user.me.username}")
                             ]
                         ]
                     )
