@@ -89,15 +89,15 @@ async def check_perms(
         uid = message.from_user.id
     # TODO: Cache
     user = await chat.get_member(uid)
-    if user.status == "creator":
+    if user.status.value == "creator":
         return True
 
     missing_perms = []
 
     # No permissions specified, accept being an admin.
-    if not permissions and user.status == "administrator":
+    if not permissions and user.status.value == "administrator":
         return True
-    if user.status != "administrator":
+    if user.status.value != "administrator":
         if notice:
             await sender("💡 To use me, Give me the administrator permission." if user.user.is_self else
                          "💡 You need to be an administrator to use this command.")
