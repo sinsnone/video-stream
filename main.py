@@ -1,17 +1,24 @@
 import asyncio
-from pytgcalls import idle
+from pyrogram import idle
+from mody.Redis import db
+from mody.get_info import sudo_info, get_bot
+from mody.yad import Bot, user, calls
 
-import os
-import sys
-import random
-import asyncio
-from config import API_HASH, API_ID, BOT_TOKEN
-from pyrogram import Client
-from pytgcalls import PyTgCalls
-from bot import *
-from pyromod import listen
+async def main():
+    await Bot.start()
+    try:
+        await user.start()
+    except:
+        print("جلسه لا تعمل")
+    try:
+        await calls.start()
+    except:
+        print("جلسه لا تعمل")
+    print("تم تشغيل البوت بنجاح")
+    await idle()
+    await Bot.stop()
+    print("تم ايقاف البوت بنجاح")
 
-
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_bot())
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
