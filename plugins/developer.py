@@ -27,7 +27,7 @@ from io import StringIO
 from inspect import getfullargspec
 
 from config import BOT_USERNAME as bname
-from mody.yad bot
+from mody.yad import Bot
 from driver.queues import QUEUE
 from driver.filters import command
 from driver.database.dbchat import remove_served_chat

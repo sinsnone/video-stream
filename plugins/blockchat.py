@@ -21,7 +21,7 @@ from pyrogram.types import Message
 from pyrogram import Client, filters
 
 from config import BOT_USERNAME
-from mody.yad bot
+from mody.yad import Bot
 from driver.filters import command
 from driver.decorators import sudo_users_only
 from driver.database.dblockchat import (
