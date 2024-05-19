@@ -1,7 +1,7 @@
 import os
 import asyncio
 
-from mody.yad import bot, calls, user
+from mody.yad import Bot, calls, user
 from driver.database.dbqueue import remove_active_chat
 from driver.queues import (
     QUEUE,
