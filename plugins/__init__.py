@@ -3,11 +3,10 @@ __version__ = "0.6.5"
 
 import time
 import logging
-
-from bot import me_bot
+from mody.yad import Bot
 
 logging.basicConfig(
-  filename=f'streambot-logs-{me_bot.id}.txt',
+  filename=f'streambot-logs-{Bot.me.id}.txt',
   level=logging.INFO,
   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
