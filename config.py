@@ -4,12 +4,6 @@ from dotenv import load_dotenv
 admins = {}
 load_dotenv()
 
-# client vars
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
-BOT_TOKEN = getenv("BOT_TOKEN")
-SESSION_NAME = getenv("SESSION_NAME", "session")
-
 # mandatory vars
 OWNER_USERNAME = getenv("OWNER_USERNAME")
 ALIVE_NAME = getenv("ALIVE_NAME")

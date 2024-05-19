@@ -1,6 +1,6 @@
 from typing import Optional
 
-from bot import user
+from mody.yad user
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.types import Message

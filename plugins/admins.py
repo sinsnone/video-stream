@@ -22,7 +22,7 @@ import traceback
 from cache.admins import admins
 from config import BOT_USERNAME, IMG_5
 
-from bot import calls, me_user
+from mody.yad calls, me_user
 from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.queues import QUEUE, clear_queue

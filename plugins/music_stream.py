@@ -35,7 +35,7 @@ from driver.design.thumbnail import thumb
 from driver.design.chatname import CHAT_TITLE
 from driver.filters import command, other_filters
 from driver.queues import QUEUE, add_to_queue
-from bot import calls, user, me_user
+from mody.yad calls, user, me_user
 from driver.utils import bash, remove_if_exists, from_tg_get_msg
 from driver.database.dbqueue import add_active_chat, remove_active_chat, music_on
 from driver.decorators import require_admin, check_blacklist
