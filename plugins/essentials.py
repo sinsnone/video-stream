@@ -27,7 +27,7 @@ from pytgcalls import (__version__ as pytgver)
 from . import __version__ as ver
 from .start import __python_version__ as pyver
 
-from bot import me_bot
+from mody.yad import Bot
 from driver.filters import command
 from driver.decorators import bot_creator, sudo_users_only
 from driver.database.dbchat import get_served_chats

@@ -23,7 +23,7 @@ from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 
-from bot import me_bot
+from mody.yad import Bot
 from driver.filters import command, other_filters
 from driver.decorators import bot_creator
 from driver.database.dbchat import get_served_chats

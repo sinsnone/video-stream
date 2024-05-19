@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/licenses.html
 """
 
 
-from bot import me_bot, me_user
+from mody.yad import Bot, user
 from driver.queues import QUEUE
 from driver.decorators import check_blacklist
 from .utils.inline import menu_markup, stream_markup
