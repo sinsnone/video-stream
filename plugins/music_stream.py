@@ -181,7 +181,9 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
             "» reply to an **audio file** or **give something to search.**"
         )
 
+queue = []
 
+@Client.on_message(filters.command("play"))
 async def play_song(client, message):
     # Get the YouTube video URL from the user's message
     url = message.text.split()[1]
@@ -202,17 +204,46 @@ async def play_song(client, message):
     # Create the caption for the message
     caption = f"🗂 Name: [{songname}]({url}) | music\n**⏱ Duration:** {duration} seconds\n🧸 **Request by:** {requester}"
 
-    # Join the voice chat and start playing the song
-    await call_client.join_group_call(
-        message.chat.id,
-        pytgcalls.types.AudioPiped(
-            file_path,
-        ),
-    )
+    # Add the song to the queue
+    queue.append((file_path, caption))
 
-    # Send the message with the song information
-    await message.reply(caption, disable_web_page_preview=True)
-    
+    # If the queue has only one item, start playing the song
+    if len(queue) == 1:
+        await call_client.join_group_call(
+            message.chat.id,
+            pytgcalls.types.AudioPiped(
+                queue[0][0],
+            ),
+        )
+        await message.reply(queue[0][1], disable_web_page_preview=True)
+
+    # If the queue has more than one item, send a message
+    else:
+        await message.reply(f"Added '{songname}' to the queue. Currently {len(queue) - 1} songs in the queue.")
+
+@Client.on_message(filters.command("skip"))
+async def skip_song(client, message):
+    # If the queue is empty, do nothing
+    if not queue:
+        await message.reply("The queue is empty.")
+        return
+
+    # Remove the first item from the queue
+    queue.pop(0)
+
+    # If the queue is not empty, start playing the next song
+    if queue:
+        await call_client.join_group_call(
+            message.chat.id,
+            pytgcalls.types.AudioPiped(
+                queue[0][0],
+            ),
+        )
+        await message.reply(queue[0][1], disable_web_page_preview=True)
+    else:
+        await call_client.leave_group_call(message.chat.id)
+        await message.reply("The queue is empty. Stopped playing the songs.")
+
 @Client.on_message(command(["stream", f"stream@{BOT_USERNAME}"]) & other_filters)
 @check_blacklist()
 @require_admin(permissions=["can_manage_voice_chats", "can_delete_messages", "can_invite_users"], self=True)
