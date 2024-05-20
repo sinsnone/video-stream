@@ -385,7 +385,7 @@ async def live_music_stream(c: Client, m: Message):
     try:
         ubot = user.me.id
         b = await c.get_chat_member(chat_id, ubot)
-        if b.status == "banned":
+        if b.status.value == "banned":
             try:
                 await m.reply_text("❌ The userbot is banned in this chat, unban the userbot first to be able to play music !")
                 await remove_active_chat(chat_id)
