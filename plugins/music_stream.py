@@ -248,7 +248,7 @@ async def audio_stream(c: Client, m: Message):
                     userid = m.from_user.id
                     gcname = m.chat.title
                     ctitle = await CHAT_TITLE(gcname)
-                    image = await thumb(thumbnail, title, userid, ctitle)
+                    image = "https://graph.org/file/f952059c72587541262c3.jpg"
                     out, ytlink = await ytdl(url)
                     if out == 0:
                         await suhu.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
