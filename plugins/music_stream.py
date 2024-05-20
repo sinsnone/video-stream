@@ -182,199 +182,37 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
         )
 
 
-@Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
-async def audio_stream(c: Client, m: Message):
-    await m.delete()
-    replied = m.reply_to_message
-    chat_id = m.chat.id
-    user_id = m.from_user.id
-    try:
-        b = await c.get_chat_member(chat_id, 6706375408)
-        if b.status.value == "banned":
-            try:
-                await m.reply_text("❌ The userbot is banned in this chat, unban the userbot first to be able to play music !")
-                await remove_active_chat(chat_id)
-            except BaseException:
-                pass
-            invitelink = (await c.get_chat(chat_id)).invite_link
-            if not invitelink:
-                await c.export_chat_invite_link(chat_id)
-                invitelink = (await c.get_chat(chat_id)).invite_link
-            if invitelink.startswith("https://t.me/+"):
-                invitelink = invitelink.replace(
-                    "https://t.me/+", "https://t.me/joinchat/"
-                )
-            await user.join_chat(invitelink)
-            await remove_active_chat(chat_id)
-    except UserNotParticipant:
-        try:
-            invitelink = (await c.get_chat(chat_id)).invite_link
-            if not invitelink:
-                await c.export_chat_invite_link(chat_id)
-                invitelink = (await c.get_chat(chat_id)).invite_link
-            if invitelink.startswith("https://t.me/+"):
-                invitelink = invitelink.replace(
-                    "https://t.me/+", "https://t.me/joinchat/"
-                )
-            await user.join_chat(invitelink)
-            await remove_active_chat(chat_id)
-        except UserAlreadyParticipant:
-            pass
-        except Exception as e:
-            LOGS.info(e)
-            return await m.reply_text(
-                f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
-            )
-    if replied:
-        if replied.audio or replied.voice:
-            await play_tg_file(c, m, replied)
-        else:
-            if len(m.command) < 2:
-                await m.reply(
-                    "» reply to an **audio file** or **give something to search.**"
-                )
-            else:
-                suhu = await c.send_message(chat_id, "🔍 **Loading...**")
-                query = m.text.split(None, 1)[1]
-                search = ytsearch(query)
-                if search == 0:
-                    await suhu.edit("❌ **no results found**")
-                else:
-                    songname = search[0]
-                    title = search[0]
-                    url = search[1]
-                    duration = search[2]
-                    thumbnail = search[3]
-                    userid = m.from_user.id
-                    gcname = m.chat.title
-                    ctitle = await CHAT_TITLE(gcname)
-                    image = "https://graph.org/file/f952059c72587541262c3.jpg"
-                    out, ytlink = await ytdl(url)
-                    if out == 0:
-                        await suhu.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
-                    else:
-                        if chat_id in QUEUE:
-                            await suhu.edit("🔄 Queueing Track...")
-                            pos = add_to_queue(
-                                chat_id, songname, ytlink, url, "music", 0
-                            )
-                            await suhu.delete()
-                            buttons = stream_markup(user_id)
-                            requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                            await m.reply_photo(
-                                photo=image,
-                                reply_markup=InlineKeyboardMarkup(buttons),
-                                caption=f"💡 **Track added to queue »** `{pos}`\n\n🗂 **Name:** [{songname}]({url}) | `music`\n**⏱ Duration:** `{duration}`\n🧸 **Request by:** {requester}",
-                            )
-                            remove_if_exists(image)
-                        else:
-                            try:
-                                await suhu.edit("🔄 Joining Group Call...")
-                                await music_on(chat_id)
-                                await add_active_chat(chat_id)
-                                await calls.join_group_call(
-                                    chat_id,
-                                    AudioPiped(
-                                        ytlink,
-                                        HighQualityAudio(),
-                                    ),
-                                    stream_type=StreamType().local_stream,
-                                )
-                                add_to_queue(chat_id, songname, ytlink, url, "music", 0)
-                                await suhu.delete()
-                                buttons = stream_markup(user_id)
-                                requester = (
-                                    f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                                )
-                                await m.reply_photo(
-                                    photo=image,
-                                    reply_markup=InlineKeyboardMarkup(buttons),
-                                    caption=f"🗂 **Name:** [{songname}]({url}) | `music`\n**⏱ Duration:** `{duration}`\n🧸 **Request by:** {requester}",
-                                )
-                                remove_if_exists(image)
-                            except (NoActiveGroupCall, GroupCallNotFound):
-                                await suhu.delete()
-                                await remove_active_chat(chat_id)
-                                await m.reply_text("❌ The bot can't find the Group call or it's inactive.\n\n» Use /startvc command to turn on the Group call !")
-                            except NoAudioSourceFound:
-                                await suhu.delete()
-                                await remove_active_chat(chat_id)
-                                await m.reply_text("❌ The content you provide to play has no audio source")
-    else:
-        if len(m.command) < 2:
-            await m.reply(
-                "» reply to an **audio file** or **give something to search.**"
-            )
-        elif "t.me" in m.command[1]:
-            for i in m.command[1:]:
-                if "t.me" in i:
-                    await play_tg_file(c, m, link=i)
-                continue
-        else:
-            suhu = await c.send_message(chat_id, "🔍 **Loading...**")
-            query = m.text.split(None, 1)[1]
-            search = ytsearch(query)
-            if search == 0:
-                await suhu.edit("❌ **no results found**")
-            else:
-                songname = search[0]
-                title = search[0]
-                url = search[1]
-                duration = search[2]
-                thumbnail = search[3]
-                userid = m.from_user.id
-                gcname = m.chat.title
-                ctitle = await CHAT_TITLE(gcname)
-                image = await thumb(thumbnail, title, userid, ctitle)
-                veez, ytlink = await ytdl(url)
-                if veez == 0:
-                    await suhu.edit(f"❌ yt-dl issues detected\n\n» `{ytlink}`")
-                else:
-                    if chat_id in QUEUE:
-                        await suhu.edit("🔄 Queueing Track...")
-                        pos = add_to_queue(chat_id, songname, ytlink, url, "music", 0)
-                        await suhu.delete()
-                        requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                        buttons = stream_markup(user_id)
-                        await m.reply_photo(
-                            photo=image,
-                            reply_markup=InlineKeyboardMarkup(buttons),
-                            caption=f"💡 **Track added to queue »** `{pos}`\n\n🗂 **Name:** [{songname}]({url}) | `music`\n**⏱ Duration:** `{duration}`\n🧸 **Request by:** {requester}",
-                        )
-                        remove_if_exists(image)
-                    else:
-                        try:
-                            await suhu.edit("🔄 Joining Group Call...")
-                            await music_on(chat_id)
-                            await add_active_chat(chat_id)
-                            await calls.join_group_call(
-                                chat_id,
-                                AudioPiped(
-                                    ytlink,
-                                    HighQualityAudio(),
-                                ),
-                                stream_type=StreamType().local_stream,
-                            )
-                            add_to_queue(chat_id, songname, ytlink, url, "music", 0)
-                            await suhu.delete()
-                            requester = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-                            buttons = stream_markup(user_id)
-                            await m.reply_photo(
-                                photo=image,
-                                reply_markup=InlineKeyboardMarkup(buttons),
-                                caption=f"🗂 **Name:** [{songname}]({url}) | `music`\n**⏱ Duration:** `{duration}`\n🧸 **Request by:** {requester}",
-                            )
-                            remove_if_exists(image)
-                        except (NoActiveGroupCall, GroupCallNotFound):
-                            await suhu.delete()
-                            await remove_active_chat(chat_id)
-                            await m.reply_text("❌ The bot can't find the Group call or it's inactive.\n\n» Use /startvc command to turn on the Group call !")
-                        except NoAudioSourceFound:
-                            await suhu.delete()
-                            await remove_active_chat(chat_id)
-                            await m.reply_text("❌ The content you provide to play has no audio source.\n\n» Try to play another song or try again later !")
+async def play_song(client, message):
+    # Get the YouTube video URL from the user's message
+    url = message.text.split()[1]
 
+    # Download the audio from YouTube
+    yt = YouTube(url)
+    audio = yt.streams.filter(only_audio=True).first()
+    audio.download()
 
+    # Get the downloaded file path
+    file_path = audio.abspath
+
+    # Get the song information
+    songname = yt.title
+    duration = yt.length
+    requester = message.from_user.mention
+
+    # Create the caption for the message
+    caption = f"🗂 Name: [{songname}]({url}) | music\n**⏱ Duration:** {duration} seconds\n🧸 **Request by:** {requester}"
+
+    # Join the voice chat and start playing the song
+    await call_client.join_group_call(
+        message.chat.id,
+        pytgcalls.types.AudioPiped(
+            file_path,
+        ),
+    )
+
+    # Send the message with the song information
+    await message.reply(caption, disable_web_page_preview=True)
+    
 @Client.on_message(command(["stream", f"stream@{BOT_USERNAME}"]) & other_filters)
 @check_blacklist()
 @require_admin(permissions=["can_manage_voice_chats", "can_delete_messages", "can_invite_users"], self=True)
