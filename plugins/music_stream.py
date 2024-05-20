@@ -188,10 +188,6 @@ async def audio_stream(c: Client, m: Message):
     replied = m.reply_to_message
     chat_id = m.chat.id
     user_id = m.from_user.id
-    if m.sender_chat:
-        return await m.reply_text(
-            "you're an __Anonymous__ user !\n\n» revert back to your real user account to use this bot."
-        )
     try:
         ubot = user.me.id
         b = await c.get_chat_member(chat_id, ubot)
@@ -387,10 +383,6 @@ async def live_music_stream(c: Client, m: Message):
     await m.delete()
     chat_id = m.chat.id
     user_id = m.from_user.id
-    if m.sender_chat:
-        return await m.reply_text(
-            "you're an __Anonymous__ user !\n\n» revert back to your real user account to use this bot."
-        )
     try:
         ubot = user.me.id
         b = await c.get_chat_member(chat_id, ubot)
