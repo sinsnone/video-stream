@@ -42,7 +42,7 @@ from driver.decorators import require_admin, check_blacklist
 
 from config import BOT_USERNAME, IMG_1, IMG_2, IMG_5
 from asyncio.exceptions import TimeoutError
-from youtubesearchpython import VideosSearch
+from youtubesearchpython.__future__ import VideosSearch
 
 
 def ytsearch(query: str):
