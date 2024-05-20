@@ -183,7 +183,7 @@ async def play_tg_file(c: Client, m: Message, replied: Message = None, link: str
 
 queue = []
 
-@Client.on_message(filters.command("play"))
+@Client.on_message(command(["play", f"play@{BOT_USERNAME}"]) & other_filters)
 async def play_song(client, message):
     # Get the YouTube video URL from the user's message
     url = message.text.split()[1]
@@ -221,7 +221,7 @@ async def play_song(client, message):
     else:
         await message.reply(f"Added '{songname}' to the queue. Currently {len(queue) - 1} songs in the queue.")
 
-@Client.on_message(filters.command("skip"))
+@Client.on_message(command(["skip", f"stream@{BOT_USERNAME}"]) & other_filters)
 async def skip_song(client, message):
     # If the queue is empty, do nothing
     if not queue:
